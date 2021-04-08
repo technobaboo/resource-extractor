@@ -67,9 +67,12 @@ public class ModsScreenMixin extends Screen {
 	@Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V")
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo callbackInfo) {
 		String modid = selected.getMod().getId();
+
+		boolean hasAssets = ResourceExtractorMod.ContainsAssets(modid);
+		extractButton.active = hasAssets;
+		extractButton.visible = hasAssets;
+
 		boolean hasConfigure = !ModMenuConfig.HIDE_CONFIG_BUTTONS.getValue() && configScreenCache.get(modid) != null;
-//		extractButton.active = hasConfigure;
-//		extractButton.visible = hasConfigure;
 		extractButton.x = width - (hasConfigure ? 46 : 24);
 	}
 }
