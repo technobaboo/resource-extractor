@@ -1,14 +1,10 @@
 package org.technobaboo.resource_extractor;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 
-public class ResourceExtractorMod implements ModInitializer {
+public class ResourceExtractorMod implements ClientModInitializer {
 	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		System.out.println("Hello Fabric world!");
+	public void onInitializeClient() {
+		System.out.println("Initialized Resource Extractor!");
 	}
 }

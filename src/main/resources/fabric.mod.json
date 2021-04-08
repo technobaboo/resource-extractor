@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "resource-extractor",
+  "id": "resource_extractor",
   "version": "${version}",
 
   "name": "Resource Extractor",
@@ -17,7 +17,7 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       "org.technobaboo.resource_extractor.ResourceExtractorMod"
     ]
   },

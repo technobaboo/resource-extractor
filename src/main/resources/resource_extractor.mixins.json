@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "ResourceExtractorMixin"
+    "ModsScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
