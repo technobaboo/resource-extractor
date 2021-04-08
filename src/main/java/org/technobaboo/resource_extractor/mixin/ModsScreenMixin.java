@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.terraformersmc.modmenu.ModMenu;
 import com.terraformersmc.modmenu.config.ModMenuConfig;
 import com.terraformersmc.modmenu.gui.ModsScreen;
+import com.terraformersmc.modmenu.gui.widget.ModListWidget;
 import com.terraformersmc.modmenu.gui.widget.ModMenuTexturedButtonWidget;
 import com.terraformersmc.modmenu.gui.widget.entries.ModListEntry;
 import net.fabricmc.loader.api.FabricLoader;
@@ -34,6 +35,7 @@ public class ModsScreenMixin extends Screen {
 	@Shadow private ModListEntry selected;
 	@Shadow @Final public Map<String, Screen> configScreenCache;
 
+	@Shadow private ModListWidget modList;
 	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.modmenu.button.extract");
 	private static final Identifier EXTRACT_BUTTON_LOCATION = new Identifier("resource_extractor", "textures/gui/extract_button.png");
 
@@ -49,7 +51,7 @@ public class ModsScreenMixin extends Screen {
 //			client.openScreen(new ResourceExtractionScreen(this, FabricLoader.getInstance().getModContainer(modid).get()));
 			ModResourceExtractor extractor = new ModResourceExtractor(modid);
 			extractor.extract();
-			extractButton.changeFocus(false);
+			focusOn(null);
 		},
 				EXTRACT, (buttonWidget, matrices, mouseX, mouseY) -> {
 			ModMenuTexturedButtonWidget button = (ModMenuTexturedButtonWidget) buttonWidget;
@@ -60,7 +62,7 @@ public class ModsScreenMixin extends Screen {
 			}
 		});
 		this.buttons.add(0, extractButton);
-		this.children.add(0, extractButton);
+		this.children.add(this.children.indexOf(this.modList)+1, extractButton);
 	}
 	@Inject(at = @At("HEAD"), method = "render(Lnet/minecraft/client/util/math/MatrixStack;IIF)V")
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo callbackInfo) {
