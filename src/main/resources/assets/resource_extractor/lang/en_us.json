@@ -1,6 +1,8 @@
 {
   "resource_extractor.title": "Resource Extractor",
-  "resource_extractor.modmenu.button": "Extract Resources...",
+  "resource_extractor.modmenu.button.extract": "Extract Resources...",
   "resource_extractor.screen.button.extract": "Extract Resources",
-  "resource_extractor.screen.button.cancel": "Cancel"
+  "resource_extractor.screen.button.cancel": "Cancel",
+  "resource_extractor.toast.extract_successful.title": "Extract successful",
+  "resource_extractor.toast.extract_successful.description": "Check resourcepacks/"
 }

@@ -12,6 +12,8 @@ import net.minecraft.client.toast.SystemToast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.resource.metadata.PackResourceMetadata;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,18 +40,25 @@ public class ModResourceExtractor {
     public void extract() {
         metadata = mod.getMetadata();
         try {
+            Path gameDirPath = FabricLoader.getInstance().getGameDir();
             Path assetsPath = mod.getPath("assets");
             String resourcePackName = mod.getMetadata().getName() + " Resources";
-            Path resourcePackPath = FabricLoader.getInstance().getGameDir().resolve("resourcepacks");
+            Path resourcePackPath = gameDirPath.resolve("resourcepacks");
             Path targetPath = resourcePackPath.resolve(resourcePackName);
             Files.createDirectories(targetPath);
             CopyRecursive(assetsPath, targetPath);
 
+            ModContainer modMenuMod = FabricLoader.getInstance().getModContainer("modmenu").get();
             Optional<String> iconPathString = mod.getMetadata().getIconPath(128);
-            if(iconPathString.isPresent()) {
-                Path iconPath = mod.getPath(iconPathString.get());
-                Files.copy(iconPath, targetPath.resolve("pack.png"));
+            Path iconPath;
+            if(mod.getMetadata().getId().equals("minecraft")) {
+                iconPath = modMenuMod.getPath("assets/modmenu/minecraft_icon.png");
+            } else if(iconPathString.isPresent()) {
+                iconPath = mod.getPath(iconPathString.get());
+            } else {
+                iconPath = modMenuMod.getPath("assets/modmenu/unknown_icon.png");
             }
+            Files.copy(iconPath, targetPath.resolve("pack.png"));
 
             int packFormat = SharedConstants.getGameVersion().getPackVersion();
             JsonObject rootObj = new JsonObject();
@@ -61,7 +70,10 @@ public class ModResourceExtractor {
             Path metaFilePath = Files.createFile(targetPath.resolve("pack.mcmeta"));
             Files.write(metaFilePath, packObject.getBytes(StandardCharsets.UTF_8));
 
-//            SystemToast.add(MinecraftClient.getInstance().getToastManager(), SystemToast.Type.WORLD_BACKUP, "");
+            SystemToast.add(MinecraftClient.getInstance().getToastManager(),
+                    SystemToast.Type.WORLD_BACKUP,
+                    new TranslatableText("resource_extractor.toast.extract_successful.title"),
+                    new TranslatableText("resource_extractor.toast.extract_successful.description"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -34,7 +34,7 @@ public class ModsScreenMixin extends Screen {
 	@Shadow private ModListEntry selected;
 	@Shadow @Final public Map<String, Screen> configScreenCache;
 
-	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.modmenu.extract");
+	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.modmenu.button.extract");
 	private static final Identifier EXTRACT_BUTTON_LOCATION = new Identifier("resource_extractor", "textures/gui/extract_button.png");
 
 	private static ButtonWidget extractButton;
@@ -49,6 +49,7 @@ public class ModsScreenMixin extends Screen {
 //			client.openScreen(new ResourceExtractionScreen(this, FabricLoader.getInstance().getModContainer(modid).get()));
 			ModResourceExtractor extractor = new ModResourceExtractor(modid);
 			extractor.extract();
+			extractButton.changeFocus(false);
 		},
 				EXTRACT, (buttonWidget, matrices, mouseX, mouseY) -> {
 			ModMenuTexturedButtonWidget button = (ModMenuTexturedButtonWidget) buttonWidget;
