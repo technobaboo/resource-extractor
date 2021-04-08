@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "org.technobaboo.resource_extractor.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "ResourceExtractorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
