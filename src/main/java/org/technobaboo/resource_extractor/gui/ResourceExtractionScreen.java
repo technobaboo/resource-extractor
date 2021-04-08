@@ -26,10 +26,10 @@ public class ResourceExtractionScreen extends Screen {
     }
 
     protected void init() {
-        this.addButton(new ButtonWidget(this.width / 2 - 150 - (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.cancel"), button -> {
+        this.addButton(new ButtonWidget(this.width / 2 - 150 - (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.screen.button.cancel"), button -> {
             this.onClose();
         }));
-        this.addButton(new ButtonWidget(this.width / 2 + (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.extract"), button -> {
+        this.addButton(new ButtonWidget(this.width / 2 + (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.screen.button.extract"), button -> {
             extractor.extract();
         }));
     }

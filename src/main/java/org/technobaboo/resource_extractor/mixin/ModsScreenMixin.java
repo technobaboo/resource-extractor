@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.technobaboo.resource_extractor.ModResourceExtractor;
 import org.technobaboo.resource_extractor.ResourceExtractorMod;
 import org.technobaboo.resource_extractor.gui.ResourceExtractionScreen;
 
@@ -33,7 +34,7 @@ public class ModsScreenMixin extends Screen {
 	@Shadow private ModListEntry selected;
 	@Shadow @Final public Map<String, Screen> configScreenCache;
 
-	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.extract");
+	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.modmenu.extract");
 	private static final Identifier EXTRACT_BUTTON_LOCATION = new Identifier("resource_extractor", "textures/gui/extract_button.png");
 
 	private static ButtonWidget extractButton;
@@ -45,7 +46,9 @@ public class ModsScreenMixin extends Screen {
 	private void init(CallbackInfo info) {
 		extractButton = new ModMenuTexturedButtonWidget(width - 24, paneY, 20, 20, 0, 0, EXTRACT_BUTTON_LOCATION, 32, 64, button -> {
 			final String modid = Objects.requireNonNull(selected).getMod().getId();
-			client.openScreen(new ResourceExtractionScreen(this, FabricLoader.getInstance().getModContainer(modid).get()));
+//			client.openScreen(new ResourceExtractionScreen(this, FabricLoader.getInstance().getModContainer(modid).get()));
+			ModResourceExtractor extractor = new ModResourceExtractor(modid);
+			extractor.extract();
 		},
 				EXTRACT, (buttonWidget, matrices, mouseX, mouseY) -> {
 			ModMenuTexturedButtonWidget button = (ModMenuTexturedButtonWidget) buttonWidget;

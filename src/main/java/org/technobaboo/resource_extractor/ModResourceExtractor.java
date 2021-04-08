@@ -7,6 +7,9 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.SharedConstants;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.toast.SystemToast;
+import net.minecraft.client.toast.ToastManager;
 import net.minecraft.resource.metadata.PackResourceMetadata;
 import net.minecraft.text.LiteralText;
 
@@ -58,6 +61,7 @@ public class ModResourceExtractor {
             Path metaFilePath = Files.createFile(targetPath.resolve("pack.mcmeta"));
             Files.write(metaFilePath, packObject.getBytes(StandardCharsets.UTF_8));
 
+//            SystemToast.add(MinecraftClient.getInstance().getToastManager(), SystemToast.Type.WORLD_BACKUP, "");
         } catch (IOException e) {
             e.printStackTrace();
         }

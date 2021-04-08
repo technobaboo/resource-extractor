@@ -1,6 +1,6 @@
 {
   "resource_extractor.title": "Resource Extractor",
-  "resource_extractor.resourcePack.button": "Extract Resources",
-  "resource_extractor.cancel": "Cancel",
-  "resource_extractor.extract": "Extract Resources..."
+  "resource_extractor.modmenu.button": "Extract Resources...",
+  "resource_extractor.screen.button.extract": "Extract Resources",
+  "resource_extractor.screen.button.cancel": "Cancel"
 }
