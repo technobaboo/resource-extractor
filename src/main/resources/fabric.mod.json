@@ -9,13 +9,14 @@
     "technobaboo"
   ],
   "contact": {
+    "issues": "https://github.com/technobaboo/resource-extractor/issues",
     "sources": "https://github.com/technobaboo/resource-extractor"
   },
 
   "license": "MIT",
   "icon": "assets/resource_extractor/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "org.technobaboo.resource_extractor.ResourceExtractorMod"
