@@ -11,9 +11,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.resource.metadata.PackResourceMetadata;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,8 +70,8 @@ public class ModResourceExtractor {
 
             SystemToast.add(MinecraftClient.getInstance().getToastManager(),
                     SystemToast.Type.WORLD_BACKUP,
-                    new TranslatableText("resource_extractor.toast.extract_successful.title"),
-                    new TranslatableText("resource_extractor.toast.extract_successful.description"));
+                    Text.translatable("resource_extractor.toast.extract_successful.title"),
+                    Text.translatable("resource_extractor.toast.extract_successful.description"));
         } catch (IOException e) {
             e.printStackTrace();
         }

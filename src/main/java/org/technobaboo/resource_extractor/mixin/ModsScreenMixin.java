@@ -9,11 +9,9 @@ import com.terraformersmc.modmenu.gui.widget.ModMenuTexturedButtonWidget;
 import com.terraformersmc.modmenu.gui.widget.entries.ModListEntry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.pack.PackScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,7 +34,6 @@ public class ModsScreenMixin extends Screen {
 	@Shadow @Final public Map<String, Screen> configScreenCache;
 
 	@Shadow private ModListWidget modList;
-	private static final TranslatableText EXTRACT = new TranslatableText("resource_extractor.modmenu.button.extract");
 	private static final Identifier EXTRACT_BUTTON_LOCATION = new Identifier("resource_extractor", "textures/gui/extract_button.png");
 
 	private static ButtonWidget extractButton;

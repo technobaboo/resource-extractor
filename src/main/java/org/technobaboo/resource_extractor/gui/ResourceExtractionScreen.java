@@ -10,7 +10,6 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.technobaboo.resource_extractor.ModResourceExtractor;
 
 public class ResourceExtractionScreen extends Screen {
@@ -20,16 +19,16 @@ public class ResourceExtractionScreen extends Screen {
     protected final ModResourceExtractor extractor;
 
     public ResourceExtractionScreen(Screen previousScreen, ModContainer modContainer) {
-        super(new TranslatableText("resource_extractor.title"));
+        super(Text.translatable("resource_extractor.title"));
         this.previousScreen = previousScreen;
         this.extractor = new ModResourceExtractor(modContainer);
     }
 
     protected void init() {
-        this.addButton(new ButtonWidget(this.width / 2 - 150 - (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.screen.button.cancel"), button -> {
+        this.addButton(new ButtonWidget(this.width / 2 - 150 - (BUTTON_SPACING/2), this.height - 24, 150, 20, Text.translatable("resource_extractor.screen.button.cancel"), button -> {
             this.onClose();
         }));
-        this.addButton(new ButtonWidget(this.width / 2 + (BUTTON_SPACING/2), this.height - 24, 150, 20, new TranslatableText("resource_extractor.screen.button.extract"), button -> {
+        this.addButton(new ButtonWidget(this.width / 2 + (BUTTON_SPACING/2), this.height - 24, 150, 20, Text.translatable("resource_extractor.screen.button.extract"), button -> {
             extractor.extract();
         }));
     }
